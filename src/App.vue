@@ -14,6 +14,15 @@
           transition="scale-transition"
           width="40"
         />
+
+       <v-btn
+        v-on:click="goto('home')"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Home</span>
+      </v-btn>
+
       <v-btn
         v-on:click="goto('counter')"
         target="_blank"
@@ -38,9 +47,10 @@
     </v-app-bar>
 
     <v-main>
+
+      <Home v-if="showView('home')"/>
       
       <Counter v-if="showView('counter')"/>
-     
       
       <Stringer v-if="showView('stringer')"/>
      
@@ -51,17 +61,19 @@
 <script>
 import Counter from './components/Counter';
 import Stringer from './components/Stringer';
+import Home from './components/Home';
 
 export default {
   name: 'App',
 
   components: {
     Counter,
-    Stringer
+    Stringer,
+    Home
   },
 
   data: () => ({
-    currentView: "counter",
+    currentView: "home",
   }),
   methods: {
     showView(view) {
