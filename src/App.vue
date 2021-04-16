@@ -19,7 +19,9 @@
           <div id="app">
             <AppDropdown>
               <template slot="toggler">
-                <button>Menú</button>
+                <v-btn>
+                  Menú
+                </v-btn>
               </template>
               <AppDropdownContent>
                 <v-btn

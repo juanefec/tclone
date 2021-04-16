@@ -1,9 +1,6 @@
 <template>
   <div @click="toggle" v-on-clickaway="away">
-    <slot name="toggler">
-      <button>Toggle</button>
-    </slot>
-    <slot/>
+    <slot name="toggler"></slot><slot/>
   </div>
 </template>
 
