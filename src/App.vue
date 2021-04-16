@@ -14,21 +14,35 @@
           transition="scale-transition"
           width="40"
         />
-      <v-btn
-        v-on:click="goto('counter')"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Counter</span>
-      </v-btn>
+        
+        <template>
+          <div id="app">
+            <AppDropdown>
+              <template slot="toggler">
+                <v-btn>
+                  Menú
+                </v-btn>
+              </template>
+              <AppDropdownContent>
+                <v-btn
+                  v-on:click="goto('counter')"
+                  target="_blank"
+                  text
+                  >
+                  <span class="mr-2">Counter</span>
+                  </v-btn>
 
-      <v-btn
-        v-on:click="goto('stringer')"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Stringer</span>
-      </v-btn>
+                  <v-btn
+                  v-on:click="goto('stringer')"
+                  target="_blank"
+                  text
+                  >
+                  <span class="mr-2">Stringer</span>
+                </v-btn>
+              </AppDropdownContent>
+            </AppDropdown>
+          </div>
+        </template>
       
       </div>
 
@@ -51,13 +65,17 @@
 <script>
 import Counter from './components/Counter';
 import Stringer from './components/Stringer';
+import AppDropdown from './components/AppDropdown.vue'
+import AppDropdownContent from './components/AppDropdownContent.vue'
 
 export default {
   name: 'App',
 
   components: {
     Counter,
-    Stringer
+    Stringer,
+    AppDropdown,
+    AppDropdownContent
   },
 
   data: () => ({
