@@ -1,10 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
+    <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
         <v-img
           alt="Vuetify Logo"
@@ -14,80 +10,72 @@
           transition="scale-transition"
           width="40"
         />
-        
+
         <template>
           <div id="app">
             <AppDropdown>
               <template slot="toggler">
-                <v-btn>
-                  Menú
-                </v-btn>
+                <v-btn> Menú </v-btn>
               </template>
               <AppDropdownContent>
-                <v-btn
-                  v-on:click="goto('counter')"
-                  target="_blank"
-                  text
-                  >
-                  <span class="mr-2">Counter</span>
-                  </v-btn>
+                <v-btn v-on:click="goto('home')" target="_blank" text>
+                  <span class="mr-2">Home</span>
+                </v-btn>
 
-                  <v-btn
-                  v-on:click="goto('stringer')"
-                  target="_blank"
-                  text
-                  >
+                <v-btn v-on:click="goto('counter')" target="_blank" text>
+                  <span class="mr-2">Counter</span>
+                </v-btn>
+
+                <v-btn v-on:click="goto('stringer')" target="_blank" text>
                   <span class="mr-2">Stringer</span>
                 </v-btn>
               </AppDropdownContent>
             </AppDropdown>
           </div>
         </template>
-      
       </div>
 
       <v-spacer></v-spacer>
-
-      
     </v-app-bar>
 
     <v-main>
-      
-      <Counter v-if="showView('counter')"/>
-     
-      
-      <Stringer v-if="showView('stringer')"/>
-     
+      <Home v-if="showView('home')" />
+
+      <Counter v-if="showView('counter')" />
+
+      <Stringer v-if="showView('stringer')" />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import Counter from './components/Counter';
-import Stringer from './components/Stringer';
-import AppDropdown from './components/AppDropdown.vue'
-import AppDropdownContent from './components/AppDropdownContent.vue'
+import Counter from "./components/Counter";
+import Stringer from "./components/Stringer";
+import AppDropdown from "./components/AppDropdown.vue";
+import AppDropdownContent from "./components/AppDropdownContent.vue";
+import Home from "./components/Home";
 
 export default {
-  name: 'App',
+  name: "App",
 
   components: {
     Counter,
     Stringer,
     AppDropdown,
-    AppDropdownContent
+    AppDropdownContent,
+    Home
   },
 
   data: () => ({
-    currentView: "counter",
+    currentView: "home",
   }),
   methods: {
     showView(view) {
-      return view == this.currentView
+      return view == this.currentView;
     },
     goto(where) {
-      this.currentView = where
-    }
-  }
+      this.currentView = where;
+    },
+  },
 };
 </script>
