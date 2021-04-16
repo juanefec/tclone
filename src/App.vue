@@ -13,24 +13,7 @@
 
         <template>
           <div id="app">
-            <AppDropdown>
-              <template slot="toggler">
-                <v-btn> Menú </v-btn>
-              </template>
-              <AppDropdownContent>
-                <v-btn v-on:click="goto('home')" target="_blank" text>
-                  <span class="mr-2">Home</span>
-                </v-btn>
-
-                <v-btn v-on:click="goto('counter')" target="_blank" text>
-                  <span class="mr-2">Counter</span>
-                </v-btn>
-
-                <v-btn v-on:click="goto('stringer')" target="_blank" text>
-                  <span class="mr-2">Stringer</span>
-                </v-btn>
-              </AppDropdownContent>
-            </AppDropdown>
+            <MenuDropdown v-model="currentView" :items="items" color="deep-purple accent-4" text="Menu"/>
           </div>
         </template>
       </div>
@@ -39,11 +22,11 @@
     </v-app-bar>
 
     <v-main>
-      <Home v-if="showView('home')" />
+      <Home v-if="showView('Home')" />
 
-      <Counter v-if="showView('counter')" />
+      <Counter v-if="showView('Counter')" />
 
-      <Stringer v-if="showView('stringer')" />
+      <Stringer v-if="showView('Stringer')" />
     </v-main>
   </v-app>
 </template>
@@ -51,31 +34,29 @@
 <script>
 import Counter from "./components/Counter";
 import Stringer from "./components/Stringer";
-import AppDropdown from "./components/AppDropdown.vue";
-import AppDropdownContent from "./components/AppDropdownContent.vue";
+import MenuDropdown from "./components/menu-dropdown/MenuDropdown.vue"
 import Home from "./components/Home";
 
 export default {
   name: "App",
-
   components: {
     Counter,
     Stringer,
-    AppDropdown,
-    AppDropdownContent,
+    MenuDropdown,
     Home
   },
-
   data: () => ({
-    currentView: "home",
+    currentView: "Home",
+    items: [
+      "Home",
+      "Counter",
+      "Stringer"
+    ]
   }),
   methods: {
     showView(view) {
       return view == this.currentView;
-    },
-    goto(where) {
-      this.currentView = where;
-    },
+    }
   },
 };
 </script>
